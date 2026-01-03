@@ -1,103 +1,151 @@
-# Universal Downloader 🎬
+# Universal Downloader 🎬 (Modern Edition)
 
 **The High-Fidelity Universal Media Downloader & VFR Converter for Video Editors.**
 
+> **New Architecture:** Now featuring a beautiful **Electron** frontend powered by a robust **Python** backend.
+
 ![App Screenshot](screenshot.png)
 
+## 🚀 Why Use This?
+
 **Fix media glitches in Premiere Pro & DaVinci Resolve automatically.**
-> *Keywords: Universal Media to MP4 4K, Fix VFR Audio Sync, HandBrake Automation, Variable Frame Rate Fix, Premiere Pro Glitch Fix.*
 
-## 🛑 The Problem: "Why does my footage glitch?"
-As a video editor, you know the pain:
-1. You download a clip from online platforms using a random website.
-2. It plays fine in VLC, but **glitches, lags, or de-syncs** when imported into **Adobe Premiere Pro** or **DaVinci Resolve**.
-3. **The Cause:** YouTube videos use **VFR (Variable Frame Rate)** to save data. Professional NLEs require **CFR (Constant Frame Rate)** to edit smoothly.
-4. **The Old Fix:** You had to manually waste time converting every clip through HandBrake before editing.
+As a video editor, downloading clips from random sites often results in **VFR (Variable Frame Rate)** footage that glitches or de-syncs in professional editing software.
 
-## ✅ The Solution: "One Click, Edit Ready"
-**Universal Downloader** automates the entire workflow. It downloads the highest bitrate stream and **automatically passes it through the HandBrake engine** in the background.
+**Universal Downloader** solves this:
+1.  **Downloads** the highest quality stream.
+2.  **Trims** only the parts you need (saving bandwidth).
+3.  **Optimizes** via HandBrake engine to **CFR (Constant Frame Rate)**.
+4.  **Delivers** an edit-ready MP4 or high-quality Audio file.
 
-**The Result:** You get a buttery smooth, edit-ready **MP4 (H.264, CFR)** file that works perfectly in Premiere Pro, DaVinci Resolve, After Effects, and Sony Vegas. No manual transcoding required.
+---
 
 ## ✨ Key Features
-- **Auto-HandBrake Integration:** Instantly converts VFR to CFR (Constant Frame Rate).
-- **4K & 8K Resolution:** Downloads the highest quality video streams available (2160p/4320p).
-- **Lossless Audio Extraction:** Extract audio tracks as high-quality MP3, WAV, or M4A.
-- **Smart Proxy System:** Bypasses "Sign-in required" or "Bot detected" errors using rotating proxies.
-- **Cross-Platform:** Native Windows App (.exe) or run via Python on Linux/macOS.
-- **Modern UI:** Professional Dark/Light themes that sync with your system accent color.
 
-## 📺 Supported Platforms
-- **YouTube** - Full support for videos and audio extraction
-- More platforms coming soon!
+* **🎨 Modern UI:** Sleek, dark-themed Glassmorphism interface built with Electron.
+* **🐍 Python Power:** Uses `yt-dlp` for industry-standard download reliability.
+* **✂️ Precision Trimming:** Download specific timestamps (e.g., 00:30 to 01:15) without downloading the whole video.
+* **⚙️ Auto-HandBrake:** Automatically detects 4K/1080p and applies the correct compression preset.
+* **🎧 Audio Extraction:** One-click conversion to MP3, WAV, M4A, or FLAC.
+* **⚡ Smart Mode:** Selects the best settings automatically.
 
 ---
 
-## 🚀 How to Install
+## 🛠️ Tech Stack
 
-### 🔹 Option 1: The Easy Way (Windows Only)
-*Best for editors who just want it to work.*
-1. Go to the [**Releases Page**](https://github.com/amolbangare08/Universal-Downloader/releases).
-2. Download the latest `Universal-Downloader.exe`.
-3. Run the app. (FFmpeg and HandBrake engines will be downloaded automatically on the first run).
+This project uses a hybrid architecture:
+* **Frontend:** Electron.js, HTML5, CSS3, Node.js (Handles the UI and Process Management).
+* **Backend:** Python 3, `yt-dlp`, `ffmpeg`, `HandBrakeCLI` (Handles the heavy lifting).
 
-### 🔹 Option 2: Run from Source (Windows, Linux, macOS)
-*Best for developers or Linux users.*
+---
 
-**Prerequisites:** Ensure you have [Python 3.10+](https://www.python.org/downloads/) installed.
+## 📥 Installation & Setup
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/amolbangare08/Universal-Downloader.git
-   cd Universal-Downloader
+Since this is a hybrid app, you need to set up both the Python environment and the Node.js environment.
 
+### Prerequisites
+1.  **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
+2.  **Python** (v3.8 or higher) - [Download](https://www.python.org/)
+3.  **FFmpeg** - Must be installed and added to your System PATH, or placed in the `backend/` folder.
 
-
-2. **Install dependencies:**
+### Step 1: Clone the Repository
 ```bash
-pip install -r requirements.txt
+git clone [https://github.com/yourusername/universal-downloader.git](https://github.com/yourusername/universal-downloader.git)
+cd universal-downloader
+Step 2: Setup the Backend (Python)
+Install the required Python libraries.
 
-```
+Bash
 
+# Windows
+pip install yt-dlp requests
 
-3. **Run the script:**
-* **Windows:** `python universal_downloader.py`
-* **Linux/Mac:** `python3 universal_downloader.py`
+# Mac/Linux
+pip3 install yt-dlp requests
+Note: Ensure ffmpeg.exe and HandBrakeCLI.exe are either in your system PATH or placed inside the backend/ folder.
 
+Step 3: Setup the Frontend (Electron)
+Navigate to the frontend folder and install dependencies.
 
+Bash
 
-*(Note for Linux Users: You may need to install ffmpeg and HandBrakeCLI via your package manager, e.g., `sudo apt install ffmpeg handbrake-cli`)*
+cd frontend
+npm install
+▶️ How to Run
+Once setup is complete, you can launch the application:
 
----
+Open your terminal in the frontend folder.
 
-## 🛡️ Advanced: How to Use Proxies
+Run the start command:
 
-If you are downloading many videos and YouTube temporarily blocks your IP (errors like "HTTP 429" or "Sign in to confirm you're not a bot"), you can use proxies.
+Bash
 
-1. Create a new text file named **`proxies.txt`** in the same folder as the app.
-2. Add your proxy URLs, one per line. Supported formats:
-```text
-[http://user:pass@123.45.67.89:8080](http://user:pass@123.45.67.89:8080)
-socks5://123.45.67.89:1080
-[http://123.45.67.89:3128](http://123.45.67.89:3128)
+npm start
+The application window should appear.
 
-```
+🎮 How to Use
+Paste URL: Copy a YouTube (or supported site) link and click PASTE.
 
+Select Mode:
 
-3. **Restart the app.**
-4. If a download fails due to network blocking, the app will automatically switch to "Secure Proxy Mode" and rotate through your list until it finds a working connection.
+Video + Audio: Standard video download.
 
----
+Video Only: Good for stock footage (no sound).
 
-## 🤝 Contributing
+Audio Only: Extracts music/speech.
 
-Found a bug? Want to add a feature?
+Configure Options:
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Quality: Select resolution (up to 4K).
+
+Cut/Trim: Toggle ON to specify Start and End times.
+
+Optimize: Toggle ON to run the video through HandBrake (recommended for editing).
+
+Download: Click START DOWNLOAD, select your destination folder, and watch the progress bar!
+
+📂 Project Structure
+Plaintext
+
+universal-downloader/
+├── backend/                # The Brains (Python)
+│   ├── cli.py              # The bridge between Electron and Python
+│   ├── core.py             # Configs and utilities
+│   ├── downloaders.py      # Download logic engine
+│   ├── ffmpeg.exe          # (Optional) Binary
+│   └── HandBrakeCLI.exe    # (Optional) Binary
+│
+├── frontend/               # The Face (Electron)
+│   ├── main.js             # Electron main process
+│   ├── index.html          # UI Layout
+│   ├── style.css           # Styling
+│   ├── script.js           # UI Logic
+│   └── package.json        # Node dependencies
+│
+└── README.md
+🛡️ Troubleshooting
+Download doesn't start?
+
+Ensure Python is installed and added to your PATH.
+
+Open the developer console in the app (Ctrl + Shift + I) to see error logs.
+
+"FFmpeg not found" error?
+
+The app looks for ffmpeg.exe in the backend/ folder or your system PATH. Download a static build of FFmpeg and place the .exe inside backend/.
+
+🤝 Contributing
+Fork the Project
+
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+License: MIT
 
 ## 💰 Donations
 
@@ -111,4 +159,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 **Built by Editors, for Editors.**
-
