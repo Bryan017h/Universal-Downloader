@@ -1,4 +1,4 @@
-# Universal Downloader 🎬 (Modern Edition)
+# Universal Downloader 🎬
 
 **The High-Fidelity Universal Media Downloader & VFR Converter for Video Editors.**
 
@@ -54,7 +54,7 @@ Since this is a hybrid app, you need to set up both the Python environment and t
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/universal-downloader.git
+git clone https://github.com/amolbangare08/Universal-Downloader.git
 cd universal-downloader
 ```
 
@@ -166,7 +166,8 @@ License: MIT
 
 If you find this project useful, consider supporting its development!
 
-**Bitcoin:** ₿ 1FVP7EdQZ4GmDpv4VvZUBUMm3B5MLLq2P3
+**Bitcoin:** ```bash
+₿ 1FVP7EdQZ4GmDpv4VvZUBUMm3B5MLLq2P3```
 
 ---
 
