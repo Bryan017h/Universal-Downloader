@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Universal Downloader</title>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            <h1>Universal Downloader</h1>
+            <div class="subtitle">Universal Media Extractor</div>
+        </div>
+
+        <div class="input-row">
+            <input type="text" id="url" class="url-input" placeholder="Paste YouTube link here...">
+            <button class="btn-paste" id="btn-paste">PASTE</button>
+        </div>
+
+        <div class="segmented-control">
+            <button class="segment-btn active" data-mode="video_audio">Video + Audio</button>
+            <button class="segment-btn" data-mode="video_only">Video Only</button>
+            <button class="segment-btn" data-mode="audio_only">Audio Only</button>
+        </div>
+
+        <div class="options-grid">
+            
+            <select id="quality">
+                <option value="Best Available">Best Available</option>
+                <option value="2160p">2160p (4K)</option>
+                <option value="1440p">1440p (2K)</option>
+                <option value="1080p">1080p</option>
+                <option value="720p">720p</option>
+                <option value="480p">480p</option>
+            </select>
+
+            <select id="audio-fmt" style="display: none;">
+                <option value="mp3">mp3</option>
+                <option value="m4a">m4a</option>
+                <option value="wav">wav</option>
+                <option value="flac">flac</option>
+            </select>
+
+            <label class="checkbox-wrapper">
+                <input type="checkbox" id="chk-trim"> Cut/Trim
+            </label>
+
+            <div class="trim-inputs" id="trim-box">
+                <input type="text" id="t-start" class="time-field" placeholder="00:00">
+                <span>-</span>
+                <input type="text" id="t-end" class="time-field" placeholder="00:15">
+            </div>
+
+            <label class="checkbox-wrapper" id="hb-label">
+                <input type="checkbox" id="chk-hb"> Optimize (HandBrake)
+            </label>
+
+            <select id="hb-preset" style="display: none;">
+                <option>Auto (Smart Match)</option>
+                <option>Fast 1080p30</option>
+                <option>HQ 1080p30 Surround</option>
+                <option>Fast 2160p60 4K</option>
+            </select>
+        </div>
+
+        <div class="action-area">
+            <div class="progress-bar-bg" id="progress-container">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div class="status-text" id="status"></div>
+            <button class="btn-main" id="btn-download">START DOWNLOAD</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

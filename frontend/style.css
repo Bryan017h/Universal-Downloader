@@ -1,0 +1,213 @@
+/* --- 1. NEW GLOBAL RESET (Add this at the very top) --- */
+* {
+    box-sizing: border-box; /* This keeps padding INSIDE the width */
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Colors extracted from core.py */
+    --bg-color: #09090b;       /* C_BG */
+    --card-color: #18181b;     /* C_CARD */
+    --card-border: #27272a;    /* C_CARD_BORDER */
+    --text-main: #fafafa;      /* C_TEXT_MAIN */
+    --text-sub: #a1a1aa;       /* C_TEXT_SUB */
+    
+    --input-bg: #09090b;       /* C_INPUT_BG */
+    --input-border: #3f3f46;   /* C_INPUT_BORDER */
+    
+    --accent: #6366f1;         /* C_ACCENT (Indigo) */
+    --accent-hover: #4f46e5;   /* C_ACCENT_HOVER */
+    --danger: #ef4444;         /* C_STOP */
+    --success: #10b981;        /* C_SUCCESS */
+
+    --font-family: 'Poppins', sans-serif; /* APP_FONT */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    margin: 0;
+    height: 100vh;
+    width: 100vw;       /* Ensure full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    overflow: hidden;   /* Prevent scrollbars */
+}
+
+/* --- THE MAIN CARD (UPDATED) --- */
+.card {
+    background-color: var(--card-color);
+
+    /* Responsive Width Logic */
+    width: 90%;
+    max-width: 650px;
+
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.header { text-align: center; }
+h1 { margin: 0; font-size: 30px; font-weight: 700; }
+.subtitle { color: var(--text-sub); font-size: 12px; margin-top: 5px; }
+
+/* --- INPUT GROUP --- */
+.input-row {
+    display: flex;
+    gap: 10px;
+    height: 50px;
+}
+
+.url-input {
+    flex-grow: 1;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    padding: 0 15px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+}
+.url-input:focus { border-color: var(--accent); }
+
+.btn-paste {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-paste:hover { background-color: var(--accent-hover); }
+
+/* --- SEGMENTED CONTROL --- */
+.segmented-control {
+    display: flex;
+    background-color: var(--bg-color); /* Darker background for pill container */
+    padding: 4px;
+    border-radius: 10px;
+    height: 40px;
+    border: 1px solid var(--card-border);
+}
+
+.segment-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-sub);
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.segment-btn.active {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* --- OPTIONS AREA --- */
+.options-grid {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    min-height: 40px; /* Prevent jumping */
+}
+
+/* Custom Dropdowns */
+select {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border: 1px solid var(--input-border);
+    padding: 0 10px;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Custom Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 16px; 
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Time Inputs (Hidden by default) */
+.trim-inputs {
+    display: none; /* JS will toggle this */
+    align-items: center;
+    gap: 5px;
+}
+.time-field {
+    width: 50px;
+    height: 35px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-main);
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* --- ACTION AREA --- */
+.status-text {
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 11px;
+    height: 15px;
+}
+
+.progress-bar-bg {
+    height: 6px;
+    background-color: var(--input-border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 5px;
+    display: none; /* Hidden until download starts */
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent);
+    transition: width 0.2s;
+}
+
+.btn-main {
+    width: 100%;
+    height: 55px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+.btn-main:hover { background-color: var(--accent-hover); }
+.btn-main.stop { background-color: var(--danger); }
