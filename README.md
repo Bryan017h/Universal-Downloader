@@ -164,8 +164,8 @@ License: MIT
 
 If you find this project useful, consider supporting its development!
 
-**Bitcoin:** ```bash
-₿ 1FVP7EdQZ4GmDpv4VvZUBUMm3B5MLLq2P3```
+**Bitcoin:** 🪙 ```
+ 1FVP7EdQZ4GmDpv4VvZUBUMm3B5MLLq2P3```
 
 ---
 
