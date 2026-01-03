@@ -80,6 +80,12 @@ class DownloaderMixin:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
                 final_title = re.sub(r'[\\/*?:"<>|]', "", info.get('title', 'video'))
+                if trim_on:
+                    start_str = (t_start.replace(":", "-") if t_start else "0-00")
+                    end_str = (t_end.replace(":", "-") if t_end else "")
+                    if end_str:
+                        trim_prefix = f"{start_str} - {end_str} "
+                        final_title = trim_prefix + final_title
                 video_height = info.get('height', 0) or (height_limit if height_limit else 1080)
                 video_width = info.get('width', 0) or 1920
             
