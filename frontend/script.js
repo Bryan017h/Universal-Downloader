@@ -158,12 +158,27 @@ btnDownload.addEventListener('click', () => {
     ipcRenderer.send('start-download', args);
 });
 
+// --- PARTICLE FUNCTION ---
+function createParticle(parent) {
+    const particle = document.createElement('span');
+    particle.classList.add('particle');
+    const size = Math.random() * 3 + 2; // Smaller for 6px height
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.animationDuration = `${Math.random() * 2 + 3}s`;
+    parent.appendChild(particle);
+
+    setTimeout(() => particle.remove(), 3000);
+}
+
 // --- 6. LISTENERS ---
 ipcRenderer.on('python-output', (event, msg) => {
     if (msg.type === 'progress') {
         const percent = msg.data * 100;
         progressFill.style.width = percent + '%';
         statusText.innerText = msg.text || `Downloading... ${Math.round(percent)}%`;
+        if (percent > 0) createParticle(progressFill);
     }
     else if (msg.type === 'success') {
         statusText.innerText = "Download Complete!";
