@@ -99,8 +99,10 @@ el('btn-paste').addEventListener('click', async () => {
 
 // --- 5. START DOWNLOAD (Sending data to Main) ---
 btnDownload.addEventListener('click', () => {
+    console.log('Download button clicked, isDownloading:', isDownloading);
     if (isDownloading) {
-        // Handle STOP logic here later
+        console.log('Sending stop signal');
+        ipcRenderer.send('stop-download');
         return;
     }
 
@@ -140,11 +142,12 @@ btnDownload.addEventListener('click', () => {
 
 // --- 6. RECEIVE UPDATES ---
 ipcRenderer.on('python-output', (event, msg) => {
+    console.log('Received python-output:', msg);
     if (msg.type === 'progress') {
         const percent = msg.data * 100;
         progressFill.style.width = percent + '%';
         statusText.innerText = msg.text || `Downloading... ${Math.round(percent)}%`;
-    } 
+    }
     else if (msg.type === 'success') {
         statusText.innerText = "Download Complete!";
         statusText.style.color = "var(--success)";
@@ -155,6 +158,18 @@ ipcRenderer.on('python-output', (event, msg) => {
         statusText.style.color = "var(--danger)";
         resetUI();
     }
+});
+
+ipcRenderer.on('download-canceled', () => {
+    console.log('Download canceled');
+    resetUI();
+});
+
+ipcRenderer.on('download-stopped', () => {
+    console.log('Download stopped');
+    statusText.innerText = "Download Stopped";
+    statusText.style.color = "var(--text-sub)";
+    resetUI();
 });
 
 function resetUI() {

@@ -3,6 +3,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 let mainWindow;
+let childProcess = null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -26,17 +27,24 @@ app.on('window-all-closed', () => {
 
 // --- THE BRIDGE ---
 ipcMain.on('start-download', async (event, args) => {
+  console.log('Received start-download:', args);
   const { url, mode, res, audio_fmt, use_hb, hb_preset, trim_on, t_start, t_end } = args;
 
   // 1. Path to Python Script (Step out of 'frontend' into 'backend')
   const scriptPath = path.join(__dirname, '..', 'backend', 'cli.py');
 
   // 2. Ask for Download Folder
+  console.log('Showing folder dialog');
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openDirectory'],
     title: 'Select Download Folder'
   });
-  if (result.canceled) return;
+  console.log('Dialog result:', result);
+  if (result.canceled) {
+    console.log('Dialog canceled, sending canceled event');
+    mainWindow.webContents.send('download-canceled');
+    return;
+  }
   const folder = result.filePaths[0];
 
   // 3. Build Arguments
@@ -60,7 +68,7 @@ ipcMain.on('start-download', async (event, args) => {
   console.log("Running:", 'python', cliArgs.join(' '));
 
   // 4. Spawn Python
-  const child = spawn('python', cliArgs);
+  childProcess = spawn('python', cliArgs);
 
   // 5. Forward Output to UI
   child.stdout.on('data', (data) => {
@@ -76,8 +84,22 @@ ipcMain.on('start-download', async (event, args) => {
     });
   });
 
-  child.stderr.on('data', (data) => {
+  childProcess.stderr.on('data', (data) => {
     console.error(`Error: ${data}`);
     // Don't send stderr to UI to avoid showing logs
   });
+
+  childProcess.on('close', () => {
+    childProcess = null;
+  });
+});
+
+// --- STOP DOWNLOAD ---
+ipcMain.on('stop-download', () => {
+  console.log('Received stop-download');
+  if (childProcess) {
+    console.log('Killing child process');
+    childProcess.kill();
+    mainWindow.webContents.send('download-stopped');
+  }
 });
