@@ -119,58 +119,108 @@ h1 { margin: 0; font-size: 30px; font-weight: 700; }
     color: white;
 }
 
-/* --- OPTIONS AREA --- */
+/* --- GRID SYSTEM --- */
 .options-grid {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 15px;
-    flex-wrap: wrap;
-    min-height: 40px; /* Prevent jumping */
+    margin-bottom: 10px;
 }
 
-/* Custom Dropdowns */
-select {
+/* Base Card Style */
+.option-card {
     background-color: var(--input-bg);
-    color: var(--text-main);
     border: 1px solid var(--input-border);
-    padding: 0 10px;
-    height: 35px;
-    border-radius: 8px;
-    font-size: 12px;
-    outline: none;
-    cursor: pointer;
-}
-
-/* Custom Checkbox */
-.checkbox-wrapper {
+    border-radius: 12px;
+    padding: 12px 16px;
     display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    cursor: pointer;
-}
-input[type="checkbox"] {
-    accent-color: var(--accent);
-    width: 16px; 
-    height: 16px;
-    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60px;
 }
 
-/* Time Inputs (Hidden by default) */
-.trim-inputs {
-    display: none; /* JS will toggle this */
+/* Horizontal Layout (For Switches) */
+.row-card {
+    flex-direction: row;
     align-items: center;
-    gap: 5px;
+    justify-content: space-between;
 }
-.time-field {
-    width: 50px;
-    height: 35px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
-    color: var(--text-main);
-    text-align: center;
-    border-radius: 6px;
+
+/* Full Width Card (For Presets/Trim inputs) */
+.full-width {
+    grid-column: span 2;
+}
+
+/* Labels (Small text above inputs) */
+.card-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-sub);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+.row-card .card-label {
+    margin-bottom: 0; /* Reset for side-by-side layout */
     font-size: 12px;
+}
+
+/* Styling the Dropdowns inside cards */
+.card-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 500;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+.card-select option {
+    background-color: var(--card-color);
+}
+
+/* --- TOGGLE SWITCH (Keep the slider CSS you already have!) --- */
+/* Ensure .switch and .slider classes from previous step remain */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--input-border);
+    transition: .3s;
+}
+.slider.round { border-radius: 34px; }
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px; left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- TRIM INPUTS (Updated to fit Grid) --- */
+.trim-inputs {
+    grid-column: span 2; /* Span full width */
+    display: none; /* Toggled by JS */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--input-bg);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
 }
 
 /* --- ACTION AREA --- */

@@ -27,26 +27,44 @@
         </div>
 
         <div class="options-grid">
-            
-            <select id="quality">
-                <option value="Best Available">Best Available</option>
-                <option value="2160p">2160p (4K)</option>
-                <option value="1440p">1440p (2K)</option>
-                <option value="1080p">1080p</option>
-                <option value="720p">720p</option>
-                <option value="480p">480p</option>
-            </select>
 
-            <select id="audio-fmt" style="display: none;">
-                <option value="mp3">mp3</option>
-                <option value="m4a">m4a</option>
-                <option value="wav">wav</option>
-                <option value="flac">flac</option>
-            </select>
+            <div class="option-card" id="quality-card">
+                <div class="card-label">QUALITY</div>
+                <select id="quality" class="card-select">
+                    <option value="Best Available">Best Available</option>
+                    <option value="2160p">2160p (4K)</option>
+                    <option value="1440p">1440p (2K)</option>
+                    <option value="1080p">1080p</option>
+                    <option value="720p">720p</option>
+                    <option value="480p">480p</option>
+                </select>
+            </div>
 
-            <label class="checkbox-wrapper">
-                <input type="checkbox" id="chk-trim"> Cut/Trim
-            </label>
+            <div class="option-card" id="audio-fmt-card" style="display: none;">
+                <div class="card-label">FORMAT</div>
+                <select id="audio-fmt" class="card-select">
+                    <option value="mp3">mp3</option>
+                    <option value="m4a">m4a</option>
+                    <option value="wav">wav</option>
+                    <option value="flac">flac</option>
+                </select>
+            </div>
+
+            <div class="option-card row-card">
+                <div class="card-label">CUT / TRIM</div>
+                <label class="switch">
+                    <input type="checkbox" id="chk-trim">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="option-card row-card" id="hb-card">
+                <div class="card-label">OPTIMIZE</div>
+                <label class="switch">
+                    <input type="checkbox" id="chk-hb">
+                    <span class="slider round"></span>
+                </label>
+            </div>
 
             <div class="trim-inputs" id="trim-box">
                 <input type="text" id="t-start" class="time-field" placeholder="00:00">
@@ -54,16 +72,16 @@
                 <input type="text" id="t-end" class="time-field" placeholder="00:15">
             </div>
 
-            <label class="checkbox-wrapper" id="hb-label">
-                <input type="checkbox" id="chk-hb"> Optimize (HandBrake)
-            </label>
+            <div class="option-card full-width" id="hb-preset-card" style="display: none;">
+                <div class="card-label">PRESET</div>
+                <select id="hb-preset" class="card-select">
+                    <option>Auto (Smart Match)</option>
+                    <option>Fast 1080p30</option>
+                    <option>HQ 1080p30 Surround</option>
+                    <option>Fast 2160p60 4K</option>
+                </select>
+            </div>
 
-            <select id="hb-preset" style="display: none;">
-                <option>Auto (Smart Match)</option>
-                <option>Fast 1080p30</option>
-                <option>HQ 1080p30 Surround</option>
-                <option>Fast 2160p60 4K</option>
-            </select>
         </div>
 
         <div class="action-area">

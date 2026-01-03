@@ -3,13 +3,13 @@ const { ipcRenderer } = require('electron');
 // --- ELEMENTS ---
 const el = (id) => document.getElementById(id);
 const urlInput = el('url');
-const qualitySelect = el('quality');
-const audioFmtSelect = el('audio-fmt');
+const qualityCard = el('quality-card');
+const audioFmtCard = el('audio-fmt-card');
 const trimCheck = el('chk-trim');
 const trimBox = el('trim-box');
 const hbCheck = el('chk-hb');
-const hbLabel = el('hb-label');
-const hbPreset = el('hb-preset');
+const hbCard = el('hb-card');
+const hbPresetCard = el('hb-preset-card');
 const btnDownload = el('btn-download');
 const statusText = el('status');
 const progressFill = el('progress-fill');
@@ -33,20 +33,18 @@ document.querySelectorAll('.segment-btn').forEach(btn => {
 });
 
 function updateVisibility() {
-    // Exact logic from ui.py "update_options_visibility"
     if (currentMode === 'audio_only') {
-        // Audio Mode: Hide Video/HB stuff, Show Audio stuff
-        qualitySelect.style.display = 'none';
-        audioFmtSelect.style.display = 'block';
-        hbLabel.style.display = 'none';
-        hbPreset.style.display = 'none';
+        qualityCard.style.display = 'none';
+        audioFmtCard.style.display = 'flex'; // Use flex for cards
+        hbCard.style.display = 'none';
+        hbPresetCard.style.display = 'none';
     } else {
-        // Video Mode: Show Video stuff, Hide Audio stuff
-        qualitySelect.style.display = 'block';
-        audioFmtSelect.style.display = 'none';
-        hbLabel.style.display = 'flex';
-        // Only show preset if HB is checked
-        hbPreset.style.display = hbCheck.checked ? 'block' : 'none';
+        qualityCard.style.display = 'flex';
+        audioFmtCard.style.display = 'none';
+        hbCard.style.display = 'flex';
+
+        // Check checkbox state for preset
+        hbPresetCard.style.display = hbCheck.checked ? 'flex' : 'none';
     }
 }
 
@@ -56,8 +54,7 @@ trimCheck.addEventListener('change', () => {
 });
 
 hbCheck.addEventListener('change', () => {
-    // Only show preset if HB is checked
-    hbPreset.style.display = hbCheck.checked ? 'block' : 'none';
+    hbPresetCard.style.display = hbCheck.checked ? 'flex' : 'none';
 });
 
 // --- 3. TIME AUTO-FORMATTER (The "Smart" Feature) ---
