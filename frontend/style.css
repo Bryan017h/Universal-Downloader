@@ -12,20 +12,29 @@
     --card-border: #27272a;    /* C_CARD_BORDER */
     --text-main: #fafafa;      /* C_TEXT_MAIN */
     --text-sub: #a1a1aa;       /* C_TEXT_SUB */
-    
+
     --input-bg: #09090b;       /* C_INPUT_BG */
     --input-border: #3f3f46;   /* C_INPUT_BORDER */
-    
+
     --accent: #6366f1;         /* C_ACCENT (Indigo) */
     --accent-hover: #4f46e5;   /* C_ACCENT_HOVER */
     --danger: #ef4444;         /* C_STOP */
     --success: #10b981;        /* C_SUCCESS */
 
     --font-family: 'Poppins', sans-serif; /* APP_FONT */
+
+    /* New styles from urlbar_paste.html */
+    --bg-dark: #050511;
+    --glass-bg: rgba(20, 20, 35, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --primary-glow: rgba(99, 102, 241, 0.5);
+    --text-muted: #94a3b8;
+    --input-bg-new: rgba(0, 0, 0, 0.3);
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: var(--font-family);
     margin: 0;
@@ -38,21 +47,23 @@ body {
     overflow: hidden;   /* Prevent scrollbars */
 }
 
-/* --- THE MAIN CARD (UPDATED) --- */
-.card {
-    background-color: var(--card-color);
+/* --- THE MAIN CARD (GLASS STYLE) --- */
+.glass-card {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 60px 50px 40px 50px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
     /* Responsive Width Logic */
     width: 90%;
     max-width: 650px;
 
-    padding: 40px;
-    border-radius: 24px;
-    border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     gap: 25px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 .header { text-align: center; }
@@ -60,37 +71,63 @@ h1 { margin: 0; font-size: 30px; font-weight: 700; }
 .subtitle { color: var(--text-sub); font-size: 12px; margin-top: 5px; }
 
 /* --- INPUT GROUP --- */
-.input-row {
-    display: flex;
-    gap: 10px;
-    height: 50px;
+.input-wrapper {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.url-input {
-    flex-grow: 1;
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
-    border-radius: 12px;
-    color: var(--text-main);
-    padding: 0 15px;
-    font-family: inherit;
-    font-size: 13px;
+#url {
+    width: 100%;
+    padding: 18px 25px;
+    padding-right: 110px; /* Space for button */
+    border-radius: 20px;
+    background: var(--input-bg-new);
+    border: 1px solid var(--glass-border);
+    color: white;
+    font-size: 15px;
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#url:focus {
     outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), inset 0 2px 4px rgba(0,0,0,0.2);
 }
-.url-input:focus { border-color: var(--accent); }
 
-.btn-paste {
-    background-color: var(--accent);
+#paste-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-gradient);
     color: white;
     border: none;
-    padding: 0 25px;
-    border-radius: 12px;
-    font-weight: 700;
+    padding: 12px 25px;
+    border-radius: 14px;
     font-size: 12px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
 }
-.btn-paste:hover { background-color: var(--accent-hover); }
+
+#paste-btn:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* URL input animation */
+@keyframes urlGlow {
+    0% { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    50% { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 10px var(--primary-glow); }
+    100% { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+}
+
+#url.url-animating {
+    animation: urlGlow 1s infinite;
+}
 
 /* --- SEGMENTED CONTROL --- */
 .segmented-control {
@@ -330,19 +367,88 @@ h1 { margin: 0; font-size: 30px; font-weight: 700; }
     }
 }
 
-.btn-main {
+.glow-btn {
     width: 100%;
-    height: 55px;
-    background-color: var(--accent);
-    color: white;
+    padding: 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
+    background: var(--primary-gradient);
+    color: white;
     font-size: 14px;
     font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
+    box-shadow: 0 10px 30px -5px var(--primary-glow);
+    transition: all 0.3s ease;
     margin-top: 10px;
-    transition: background 0.2s;
 }
-.btn-main:hover { background-color: var(--accent-hover); }
-.btn-main.stop { background-color: var(--danger); }
+.glow-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px -5px var(--primary-glow);
+}
+.glow-btn:active {
+    transform: translateY(0);
+}
+.glow-btn.stop { background-color: var(--danger); }
+
+/* Ambient Glow Elements */
+.glow-bg {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    z-index: -1;
+    animation: float 10s infinite ease-in-out;
+    pointer-events: none;
+}
+.glow-1 {
+    top: -200px;
+    left: -100px;
+    background: #6366f1;
+}
+.glow-2 {
+    bottom: -200px;
+    right: -100px;
+    background: #ec4899;
+    animation-delay: 5s;
+}
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 50px); }
+}
+
+/* Custom Tooltip */
+.custom-tooltip {
+    visibility: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-main);
+    text-align: left;
+    border-radius: 8px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    white-space: pre-line;
+    width: 420px;
+    max-width: 420px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+}
+
+.switch:hover .custom-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 

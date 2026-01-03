@@ -8,16 +8,18 @@
     <title>Universal Downloader</title>
 </head>
 <body>
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
 
-    <div class="card">
+    <div class="glass-card">
         <div class="header">
             <h1>Universal Downloader</h1>
             <div class="subtitle">Universal Media Extractor</div>
         </div>
 
-        <div class="input-row">
-            <input type="text" id="url" class="url-input" placeholder="Paste YouTube link here...">
-            <button class="btn-paste" id="btn-paste">PASTE</button>
+        <div class="input-wrapper">
+            <input type="text" id="url" placeholder="Paste Your Link Here..." autocomplete="off"/>
+            <button id="paste-btn">PASTE</button>
         </div>
 
         <div class="segmented-control">
@@ -40,13 +42,14 @@
                 </select>
             </div>
 
-            <div class="option-card row-card" id="hb-card">
-                <div class="card-label">OPTIMIZE</div>
-                <label class="switch">
-                    <input type="checkbox" id="chk-hb">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+             <div class="option-card row-card" id="hb-card">
+                 <div class="card-label">OPTIMIZE</div>
+                 <label class="switch">
+                     <input type="checkbox" id="chk-hb">
+                     <span class="slider round"></span>
+                     <span class="custom-tooltip">Optimizes video for editing software like Premiere Pro by<br>removing glitches and improving compatibility</span>
+                 </label>
+             </div>
 
             <div class="option-card" id="audio-fmt-card" style="display: none;">
                 <div class="card-label">FORMAT</div>
@@ -93,7 +96,7 @@
             <div class="progress-bar-bg" id="progress-container">
                 <div class="progress-bar-fill" id="progress-fill"></div>
             </div>
-            <button class="btn-main" id="btn-download">START DOWNLOAD</button>
+             <button class="glow-btn" id="btn-download">START DOWNLOAD</button>
         </div>
     </div>
 

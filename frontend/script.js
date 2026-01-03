@@ -13,6 +13,7 @@ const hbPresetSelect = el('hb-preset');   // <--- FIXED: Added this definition
 const trimCheck = el('chk-trim');
 const hbCheck = el('chk-hb');
 const btnDownload = el('btn-download');
+const pasteBtn = el('paste-btn');
 
 // 3. Cards/Containers (For showing/hiding)
 const qualityCard = el('quality-card');
@@ -109,10 +110,27 @@ el('t-start').addEventListener('keydown', (e) => { if(e.key === 'Enter') formatT
 el('t-end').addEventListener('keydown', (e) => { if(e.key === 'Enter') formatTime(e.target) });
 
 // --- 4. PASTE BUTTON ---
-el('btn-paste').addEventListener('click', async () => {
-    const text = await navigator.clipboard.readText();
-    urlInput.value = text;
+// Function to start animation
+function startUrlAnimation() {
+    urlInput.classList.add('url-animating');
+    setTimeout(() => {
+        urlInput.classList.remove('url-animating');
+    }, 10000);
+}
+
+// Paste button
+pasteBtn.addEventListener('click', async () => {
+    try {
+        const text = await navigator.clipboard.readText();
+        urlInput.value = text;
+        startUrlAnimation();
+    } catch (err) {
+        console.error('Failed to read clipboard:', err);
+    }
 });
+
+// Paste event on input
+urlInput.addEventListener('paste', startUrlAnimation);
 
 // --- 5. START DOWNLOAD ---
 btnDownload.addEventListener('click', () => {
