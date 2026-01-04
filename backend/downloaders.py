@@ -1,11 +1,9 @@
 import os
 import sys
-import threading
 import time
 import glob
 import shutil
 import re
-import random
 import subprocess
 import yt_dlp
 from yt_dlp.utils import download_range_func

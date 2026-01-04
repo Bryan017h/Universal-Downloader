@@ -3,8 +3,6 @@ import sys
 import ctypes
 import winreg
 import socket
-import random
-import glob
 import shutil
 import zipfile
 import tkinter as tk
